@@ -5,3 +5,6 @@
 - Install tailwindcss
 - Install daisyUI for CSS components
 - Install react-router-dom for routing
+- Children routing and Outlet
+- Setup basic routing
+- Add Footer
