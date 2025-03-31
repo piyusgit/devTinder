@@ -1,9 +1,18 @@
-import Navbar from "./components/Navbar";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import Body from "./components/Body";
+import Login from "./components/Login";
 function App() {
   return (
     <>
-      <Navbar />
-      <h1>Div Tinder</h1>
+      <BrowserRouter basename="/">
+        <Routes>
+          <Route path="/" element={<Body />}>
+            {/* Add children route */}
+            <Route path="/login" element={<Login />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
