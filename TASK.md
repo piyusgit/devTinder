@@ -14,3 +14,8 @@
 - Fixing the CORS error using cors middleware in server configuration
 - Also read why your cookies are not setting up in browser (whitelisting the origin)
 - whenever you are making an api call so pass axios = {withCredentials: true}
+- Install react-redux + @reduxjs/toolkit
+- configureStore() => Provider => createSlice => add reducer to store
+- login and set data into store
+- use store data to add functionality (like navbar profile pic update)
+-
