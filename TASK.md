@@ -18,4 +18,5 @@
 - configureStore() => Provider => createSlice => add reducer to store
 - login and set data into store
 - use store data to add functionality (like navbar profile pic update)
--
+- You should not be access other routes without login
+- if token is not present, redirect to login
