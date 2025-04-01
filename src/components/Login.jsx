@@ -22,7 +22,7 @@ const Login = () => {
           withCredentials: true,
         }
       );
-      console.log(res);
+      //   console.log(res);
       dispatch(addUser(res?.data)); // Add user to redux store
       navigate("/"); // Redirect to home page
     } catch (error) {
