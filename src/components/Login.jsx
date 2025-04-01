@@ -8,6 +8,7 @@ import { BASE_URL } from "../utils/constant";
 const Login = () => {
   const [emailId, setEmailId] = useState("piyush@example.com");
   const [password, setPassword] = useState("Piyush@123");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleLogin = async () => {
@@ -26,6 +27,7 @@ const Login = () => {
       dispatch(addUser(res?.data)); // Add user to redux store
       navigate("/"); // Redirect to home page
     } catch (error) {
+      setError(error?.response?.data);
       console.log(error);
     }
   };
@@ -119,6 +121,8 @@ const Login = () => {
               </p>
             </div>
           </div>
+          {/* Error message */}
+          {error && <p className="text-red-500">{error}</p>}
           <div className="card-actions justify-center mt-4">
             <button className="btn btn-primary" onClick={handleLogin}>
               Login
