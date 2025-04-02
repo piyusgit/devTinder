@@ -37,9 +37,12 @@ const Body = () => {
   }, []);
 
   return (
-    <div>
+    <div className="flex flex-col min-h-screen bg-base-200">
       <Navbar />
-      <Outlet />
+      <div className="flex-grow container mx-auto px-4 py-6">
+        <Outlet />
+      </div>
+
       <Footer />
     </div>
   );

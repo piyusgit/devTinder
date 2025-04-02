@@ -20,3 +20,8 @@
 - use store data to add functionality (like navbar profile pic update)
 - You should not be access other routes without login
 - if token is not present, redirect to login
+- Logout feature
+- Get the feed and add it to the store
+- Create the feed component and display users card
+- Create a feedSlice
+- Create a Profile component and add functionality to edit the profile

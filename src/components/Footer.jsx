@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-base-300 text-base-content rounded p-6 md:p-10 fixed bottom-0 left-0 w-full">
+    <footer className="bg-base-300 text-base-content rounded p-6 md:p-10 sticky bottom-0 left-0 w-full">
       <nav className="flex flex-wrap justify-center gap-4 md:gap-6">
         <a className="link link-hover">About us</a>
         <a className="link link-hover">Contact</a>
