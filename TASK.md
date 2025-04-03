@@ -25,3 +25,6 @@
 - Create the feed component and display users card
 - Create a feedSlice
 - Create a Profile component and add functionality to edit the profile
+- Create the Connection Page where we see all the connections
+- Create Request page add feature to accept/reject request
+- manage request slice

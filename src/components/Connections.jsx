@@ -38,7 +38,7 @@ const Connections = () => {
       <h1 className="text-bold text-2xl">Connections</h1>
 
       {allConnections?.map((user) => (
-        <div className="flex justify-center items-center ">
+        <div key={user?._id} className="flex justify-center items-center ">
           <div className=" items-center card w-96 bg-base-100 shadow-xl m-5">
             <img
               src={user?.photoUrl}
