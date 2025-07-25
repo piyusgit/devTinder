@@ -6,9 +6,14 @@ import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constant";
 
 const Login = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+
   const [emailId, setEmailId] = useState("piyush@example.com");
   const [password, setPassword] = useState("Piyush@123");
+
   const [error, setError] = useState("");
+  const [isLoginForm, setIsLoginForm] = useState(true);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleLogin = async () => {
@@ -32,12 +37,104 @@ const Login = () => {
     }
   };
 
+  const handleSignUp = async () => {
+    try {
+      const res = await axios.post(
+        BASE_URL + "/signup",
+        {
+          firstName,
+          lastName,
+          emailId,
+          password,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+      //   console.log(res);
+      dispatch(addUser(res?.data.data)); // Add user to redux store
+      navigate("/profile"); // Redirect to home page
+    } catch (error) {
+      setError(error?.response?.data);
+      console.log(error);
+    }
+  };
+
   return (
     <div className="flex justify-center my-22">
       <div className="card bg-base-300 w-96 shadow-xl">
         <div className="card-body">
-          <h2 className="card-title justify-center">Login</h2>
+          <h2 className="card-title justify-center">
+            {isLoginForm ? "Login" : "SignUp"}
+          </h2>
           <div className="form-control w-full max-w-xs mx-auto ">
+            {!isLoginForm && (
+              <>
+                <div className="">
+                  <div className="label mb-2 pl-1">
+                    <span className="label-text">First Name</span>
+                  </div>
+                  <label className="input validator">
+                    <svg
+                      className="h-[1em] opacity-50"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                    >
+                      <g
+                        strokeLinejoin="round"
+                        strokeLinecap="round"
+                        strokeWidth="2.5"
+                        fill="none"
+                        stroke="currentColor"
+                      >
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                      </g>
+                    </svg>
+                    <input
+                      type="text"
+                      required
+                      placeholder="First Name"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                    />
+                  </label>
+                  <p className="validator-hint">Must be 3 to 30 characters</p>
+                </div>
+
+                <div className="">
+                  <div className="label mb-2 pl-1">
+                    <span className="label-text">Last Name</span>
+                  </div>
+                  <label className="input validator">
+                    <svg
+                      className="h-[1em] opacity-50"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                    >
+                      <g
+                        strokeLinejoin="round"
+                        strokeLinecap="round"
+                        strokeWidth="2.5"
+                        fill="none"
+                        stroke="currentColor"
+                      >
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                      </g>
+                    </svg>
+                    <input
+                      type="text"
+                      required
+                      placeholder="Last Name"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                    />
+                  </label>
+                  <p className="validator-hint">Must be 3 to 30 characters</p>
+                </div>
+              </>
+            )}
             {/* Email field */}
             <div className="mb-4">
               <div className="label mb-2 pl-1">
@@ -124,10 +221,26 @@ const Login = () => {
           {/* Error message */}
           {error && <p className="text-red-500">{error}</p>}
           <div className="card-actions justify-center mt-4">
-            <button className="btn btn-primary" onClick={handleLogin}>
-              Login
+            <button
+              className="btn btn-primary"
+              onClick={isLoginForm ? handleLogin : handleSignUp}
+            >
+              {isLoginForm ? "Login" : "SignUp"}
             </button>
           </div>
+        </div>
+        <div className="card-footer text-center">
+          <span className="text-sm">
+            {isLoginForm
+              ? "Don't have an account?"
+              : "Already have an account?"}
+            <span
+              className="btn btn-link pl-2 text-sm"
+              onClick={() => setIsLoginForm(!isLoginForm)}
+            >
+              {isLoginForm ? "SignUp Here" : "Login Here"}
+            </span>
+          </span>
         </div>
       </div>
     </div>

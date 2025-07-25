@@ -2,16 +2,18 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const requestSlice = createSlice({
   name: "request",
-  initialState: null,
+  initialState: null, // Ensure initial state is properly structured
   reducers: {
     setRequest: (state, action) => {
-      return action.payload;
+      return action.payload; // Replaces the entire state with new request data
     },
     removeRequest: (state, action) => {
-      const newArray = state.filter(
-        (request) => request._id !== action.payload._id
-      );
-      return newArray;
+      if (!state || !state.data) return state; // Prevent errors if state is null
+
+      const newFeed = state.data.filter(
+        (request) => request._id !== action.payload
+      ); // Update only `data`
+      return newFeed;
     },
   },
 });

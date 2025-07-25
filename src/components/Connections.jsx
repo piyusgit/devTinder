@@ -12,7 +12,8 @@ const Connections = () => {
       const res = await axios.get(BASE_URL + "/user/connections", {
         withCredentials: true,
       });
-      console.log(res?.data?.data);
+      console.log(res);
+      console.log("Connections:", res?.data?.data);
       // Dispatch the connections data to redux store
       dispatch(setConnection(res?.data?.data));
     } catch (error) {

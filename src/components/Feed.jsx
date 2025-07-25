@@ -10,7 +10,7 @@ const Feed = () => {
   const feed = useSelector((store) => store.feed);
   const fetchFeed = async () => {
     try {
-      if (feed) return;
+      if (feed && feed.data) return;
       const res = await axios.get(BASE_URL + "/feed", {
         withCredentials: true,
       });
@@ -24,6 +24,15 @@ const Feed = () => {
   useEffect(() => {
     fetchFeed();
   }, []); // Empty dependency array to run only once when the component mounts
+
+  if (!feed || !feed.data) return;
+  if (feed?.data?.length === 0) {
+    return (
+      <div className="flex justify-center items-center ">
+        <h1 className="text-bold text-2xl">No Feed</h1>
+      </div>
+    );
+  }
 
   return (
     feed && (
